@@ -23,6 +23,7 @@ func readData(filename string) ([]byte, error) {
 }
 
 func fileNameWithoutExtSliceNotation(fileName string) string {
+	fileName = filepath.Base(fileName)
 	return fileName[:len(fileName)-len(filepath.Ext(fileName))]
 }
 
@@ -100,7 +101,7 @@ func main() {
 	if err != nil {
 		errorf(err.Error())
 	}
-	original_filename := filepath.Join(folder, input_filename)
+	original_filename := filepath.Join(folder, filepath.Base(input_filename))
 	err = os.WriteFile(original_filename, data, 0644)
 	if err != nil {
 		errorf(err.Error())
